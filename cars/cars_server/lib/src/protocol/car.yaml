@@ -1,0 +1,8 @@
+class: Car
+table: car
+fields:
+  brand: String
+  model: String
+  registrationDate: DateTime
+  mileage: int
+  value: int
