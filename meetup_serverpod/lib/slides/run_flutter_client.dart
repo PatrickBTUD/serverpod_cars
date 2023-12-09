@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:meetup_serverpod/shared_ui.dart';
 
-class Slide3 extends FlutterDeckSlideWidget {
-  const Slide3()
+class RunFlutterClient extends FlutterDeckSlideWidget {
+  const RunFlutterClient()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/slide3',
+            route: '/run-flutter-client',
           ),
         );
 
@@ -34,34 +34,18 @@ class _LeftContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'Commands',
+            'How to run the flutter client',
             style: Theme.of(context).textTheme.displayLarge?.copyWith(decoration: TextDecoration.underline),
           ),
-          const SizedBox(height: 24),
-          AutoSizeText(
-            'Creating a project',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
           const SizedBox(height: 32),
-          const Padding(
-            padding: EdgeInsets.only(left: 42.0),
-            child: FlutterDeckCodeHighlight(
-              code: 'serverpod create cars',
-              language: 'bash',
-            ),
-          ),
-          const SizedBox(height: 16),
           AutoSizeText(
-            ' • generate classes when changing anything in protocol or endpoints',
+            'Just run it like any other Flutter project',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.only(left: 42.0),
-            child: FlutterDeckCodeHighlight(
-              code: 'serverpod generate',
-              language: 'bash',
-            ),
+          AutoSizeText(
+            '→ cars_flutter → lib → main.dart',
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ],
       ),
@@ -75,9 +59,8 @@ class _RightContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/serverpod_create_result.png',
-      height: 650,
-      width: 650,
+      'assets/images/run_flutter_client.png',
+      fit: BoxFit.contain,
     );
   }
 }

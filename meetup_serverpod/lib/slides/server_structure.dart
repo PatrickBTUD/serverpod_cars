@@ -2,13 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:meetup_serverpod/shared_ui.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class Slide2 extends FlutterDeckSlideWidget {
-  const Slide2()
+class ServerStructure extends FlutterDeckSlideWidget {
+  const ServerStructure()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/slide2',
+            route: '/server-structure',
           ),
         );
 
@@ -35,56 +34,40 @@ class _LeftContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'How to get started',
+            'Structure of the server',
             style: Theme.of(context).textTheme.displayLarge?.copyWith(decoration: TextDecoration.underline),
-          ),
-          const SizedBox(height: 24),
-          AutoSizeText(
-            'What you need:',
-            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 32),
           AutoSizeText(
-            ' • Flutter & Dart (obviously 🤓)',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 24),
-          AutoSizeText(
-            ' • Docker',
+            ' • main.dart',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • Serverpod CLI',
+            ' • config',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.only(left: 42.0),
-            child: FlutterDeckCodeHighlight(
-              code: 'dart pub global activate serverpod_cli',
-              language: 'bash',
-            ),
-          ),
           AutoSizeText(
-            ' • Optional Serverpod Insights App',
+            ' • endpoints',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () {
-                launchUrl(
-                  Uri.parse('https://docs.serverpod.dev/insights'),
-                );
-              },
-              child: AutoSizeText(
-                ' • https://docs.serverpod.dev/insights',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-            ),
+          AutoSizeText(
+            ' • protocol',
+            style: Theme.of(context).textTheme.displayMedium,
           ),
+          const SizedBox(height: 16),
+          AutoSizeText(
+            ' • web',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: 16),
+          AutoSizeText(
+            ' • docker',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -97,9 +80,10 @@ class _RightContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/serverpod-screenshot.webp',
-      height: 650,
-      width: 650,
+      'assets/images/cars_server_structure.png',
+      height: 1200,
+      width: 400,
+      fit: BoxFit.contain,
     );
   }
 }

@@ -55,11 +55,13 @@ extension Background on BuildContext {
 class SplitLayout extends StatelessWidget {
   final Widget leftContent;
   final Widget rightContent;
+  final (int, int) flexRatio;
 
   const SplitLayout({
     super.key,
     required this.leftContent,
     required this.rightContent,
+    this.flexRatio = (2, 1),
   });
 
   @override
@@ -68,14 +70,14 @@ class SplitLayout extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Flexible(
-          flex: 2,
+          flex: flexRatio.$1,
           child: leftContent,
         ),
         const SizedBox(
           width: 42,
         ),
         Flexible(
-          flex: 1,
+          flex: flexRatio.$2,
           child: Padding(padding: const EdgeInsets.only(right: 42), child: rightContent),
         ),
       ],

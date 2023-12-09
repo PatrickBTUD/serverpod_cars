@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:meetup_serverpod/shared_ui.dart';
 
-class Slide5 extends FlutterDeckSlideWidget {
-  const Slide5()
+class ServerpodCommands extends FlutterDeckSlideWidget {
+  const ServerpodCommands()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/slide5',
+            route: '/serverpod-commands',
           ),
         );
 
@@ -34,40 +34,35 @@ class _LeftContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'Structure of the server',
+            'Commands',
             style: Theme.of(context).textTheme.displayLarge?.copyWith(decoration: TextDecoration.underline),
           ),
+          const SizedBox(height: 24),
+          AutoSizeText(
+            'Creating a project',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
           const SizedBox(height: 32),
-          AutoSizeText(
-            ' • main.dart',
-            style: Theme.of(context).textTheme.displayMedium,
+          const Padding(
+            padding: EdgeInsets.only(left: 42.0),
+            child: FlutterDeckCodeHighlight(
+              code: 'serverpod create cars',
+              language: 'bash',
+            ),
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • config',
+            ' • generate classes when changing anything in protocol or endpoints',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
-          AutoSizeText(
-            ' • endpoints',
-            style: Theme.of(context).textTheme.displayMedium,
+          const Padding(
+            padding: EdgeInsets.only(left: 42.0),
+            child: FlutterDeckCodeHighlight(
+              code: 'serverpod generate',
+              language: 'bash',
+            ),
           ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • protocol',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • web',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • docker',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
         ],
       ),
     );
@@ -80,10 +75,9 @@ class _RightContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/cars_server_structure.png',
-      height: 1200,
-      width: 400,
-      fit: BoxFit.contain,
+      'assets/images/serverpod_create_result.png',
+      height: 650,
+      width: 650,
     );
   }
 }

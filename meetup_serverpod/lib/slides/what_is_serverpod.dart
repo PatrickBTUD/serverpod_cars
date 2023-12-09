@@ -2,11 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
-class Slide1 extends FlutterDeckSlideWidget {
-  const Slide1()
+class WhatIsServerpod extends FlutterDeckSlideWidget {
+  const WhatIsServerpod()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/slide1',
+            route: '/what-is-serverpod',
           ),
         );
 
@@ -26,7 +26,7 @@ class Slide1 extends FlutterDeckSlideWidget {
               ),
               const SizedBox(height: 24),
               AutoSizeText(
-                ' • open source, sclable app server written in Dart',
+                ' • open source, scalable app server written in Dart',
                 style: Theme.of(context).textTheme.displayMedium,
               ),
               const SizedBox(height: 32),

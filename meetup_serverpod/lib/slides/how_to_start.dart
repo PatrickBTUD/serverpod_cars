@@ -4,11 +4,11 @@ import 'package:flutter_deck/flutter_deck.dart';
 import 'package:meetup_serverpod/shared_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Slide4 extends FlutterDeckSlideWidget {
-  const Slide4()
+class HowToStart extends FlutterDeckSlideWidget {
+  const HowToStart()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/slide4',
+            route: '/how-to-start',
           ),
         );
 
@@ -35,40 +35,39 @@ class _LeftContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'Starting the server',
+            'How to get started',
             style: Theme.of(context).textTheme.displayLarge?.copyWith(decoration: TextDecoration.underline),
           ),
           const SizedBox(height: 24),
-          const SizedBox(height: 32),
-          const Padding(
-            padding: EdgeInsets.only(left: 42.0),
-            child: FlutterDeckCodeHighlight(
-              code: 'cd cars/cars_server',
-              language: 'bash',
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 42.0),
-            child: FlutterDeckCodeHighlight(
-              code: 'docker compose up --build --detach',
-              language: 'bash',
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 42.0),
-            child: FlutterDeckCodeHighlight(
-              code: 'dart bin/main.dart',
-              language: 'bash',
-            ),
-          ),
-          const SizedBox(height: 16),
           AutoSizeText(
-            'For development it starts three server',
+            'What you need:',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: 32),
+          AutoSizeText(
+            ' • Flutter & Dart (obviously 🤓)',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: 24),
+          AutoSizeText(
+            ' • Docker',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • Insight Server',
+            ' • Serverpod CLI',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 42.0),
+            child: FlutterDeckCodeHighlight(
+              code: 'dart pub global activate serverpod_cli',
+              language: 'bash',
+            ),
+          ),
+          AutoSizeText(
+            ' • Optional Serverpod Insights App',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
@@ -77,21 +76,15 @@ class _LeftContent extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 launchUrl(
-                  Uri.parse('http://localhost:8082'),
+                  Uri.parse('https://docs.serverpod.dev/insights'),
                 );
               },
               child: AutoSizeText(
-                ' • Web Server',
-                style: Theme.of(context).textTheme.displayMedium,
+                ' • https://docs.serverpod.dev/insights',
+                style: Theme.of(context).textTheme.displaySmall,
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • (Dart) Server',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
         ],
       ),
     );
@@ -104,10 +97,9 @@ class _RightContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/serverpod_run_server.png',
-      height: 100,
-      width: 1200,
-      fit: BoxFit.contain,
+      'assets/images/serverpod-screenshot.webp',
+      height: 650,
+      width: 650,
     );
   }
 }
