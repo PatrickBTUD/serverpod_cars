@@ -80,6 +80,8 @@ class _MyAppState extends State<MyApp> {
           SerialisationProtocol(),
           SerialisationProtocolII(),
           SerialisationProtocolIII(),
+          Endpoint(),
+          Database(),
           OutroSlide(),
         ],
       ),

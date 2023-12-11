@@ -1,4 +1,6 @@
 //GENERATED BARREL FILE
+export 'database.dart';
+export 'endpoint.dart';
 export 'how_to_start.dart';
 export 'intro_slide.dart';
 export 'outro_slide.dart';
