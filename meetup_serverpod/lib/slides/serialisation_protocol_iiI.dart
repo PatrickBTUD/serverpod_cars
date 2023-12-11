@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:meetup_serverpod/shared_ui.dart';
 
-class ServerStructure extends FlutterDeckSlideWidget {
-  const ServerStructure()
+class SerialisationProtocolIII extends FlutterDeckSlideWidget {
+  const SerialisationProtocolIII()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/server-structure',
+            route: '/seralisation-protocol-iii',
           ),
         );
 
@@ -17,6 +17,7 @@ class ServerStructure extends FlutterDeckSlideWidget {
       builder: (context) => const SplitLayout(
         leftContent: _LeftContent(),
         rightContent: _RightContent(),
+        flexRatio: (1, 1),
       ),
     );
   }
@@ -34,37 +35,27 @@ class _LeftContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'Structure of the server',
+            'Seralisation of data - protocol',
             style: Theme.of(context).textTheme.displayLarge?.copyWith(decoration: TextDecoration.underline),
           ),
           const SizedBox(height: 32),
           AutoSizeText(
-            ' • main.dart',
+            'custom serialisation also possible',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • config',
+            ' 1. method toJson() which returns a JSON serialization of the object',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • endpoints',
+            ' 2. constructor or factory called fromJson()',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • protocol',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • web',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • docker',
+            ' 3. declare your custom serializable objects in the config/generator.yaml file',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
@@ -79,13 +70,41 @@ class _RightContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 280.0),
-      child: Image.asset(
-        'assets/images/cars_server_structure.png',
-        height: 1200,
-        width: 400,
-        fit: BoxFit.contain,
+    return const Padding(
+      padding: EdgeInsets.only(right: 16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FlutterDeckCodeHighlight(
+            code: '''import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:serverpod_serialization/serverpod_serialization.dart';
+
+part 'freezed_custom_class.freezed.dart';
+part 'freezed_custom_class.g.dart';
+
+@freezed
+class FreezedCustomClass with _\$FreezedCustomClass {
+  const factory FreezedCustomClass({
+    required String firstName,
+    required String lastName,
+    required int age,
+  }) = _FreezedCustomClass;
+
+  factory FreezedCustomClass.fromJson(
+    Map<String, Object?> json,
+    SerializationManager serializationManager,
+  ) =>
+          _\$FreezedCustomClassFromJson(json);
+}
+            ''',
+            fileName: 'my_custom_class.dart',
+            language: 'dart',
+          ),
+          SizedBox(height: 16,),
+          FlutterDeckCodeHighlight(code: '''extraClasses:
+  - package:your_package_name/my_custom_class.dart:FreezedCustomClass
+          ''', language: 'yaml', fileName: 'config/generator.yaml',)
+        ],
       ),
     );
   }

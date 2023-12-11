@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:meetup_serverpod/shared_ui.dart';
 
-class ServerStructure extends FlutterDeckSlideWidget {
-  const ServerStructure()
+class SerialisationProtocolII extends FlutterDeckSlideWidget {
+  const SerialisationProtocolII()
       : super(
           configuration: const FlutterDeckSlideConfiguration(
-            route: '/server-structure',
+            route: '/seralisation-protocol-ii',
           ),
         );
 
@@ -34,40 +34,24 @@ class _LeftContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'Structure of the server',
+            'Seralisation of data - protocol',
             style: Theme.of(context).textTheme.displayLarge?.copyWith(decoration: TextDecoration.underline),
           ),
           const SizedBox(height: 32),
           AutoSizeText(
-            ' • main.dart',
+            ' • what about extending generated classed → use Dart extension feature',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • config',
+            ' • visibility',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 16),
           AutoSizeText(
-            ' • endpoints',
+            ' • documentation can be added with ###',
             style: Theme.of(context).textTheme.displayMedium,
           ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • protocol',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • web',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
-          AutoSizeText(
-            ' • docker',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: 16),
         ],
       ),
     );
@@ -79,13 +63,20 @@ class _RightContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 280.0),
-      child: Image.asset(
-        'assets/images/cars_server_structure.png',
-        height: 1200,
-        width: 400,
-        fit: BoxFit.contain,
+    return const Padding(
+      padding: EdgeInsets.only(right: 16.0),
+      child: FlutterDeckCodeHighlight(
+        code: '''
+### Secret Information just for the server.
+class: MyPrivateClass
+### use serverOnly: true to make class only available for server
+serverOnly: true
+fields:
+  ### add your secret key here
+  hiddenSecretKey: String
+        ''',
+        fileName: 'my_private_class.yaml',
+        language: 'yaml',
       ),
     );
   }
