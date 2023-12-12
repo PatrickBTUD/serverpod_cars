@@ -36,8 +36,10 @@ class CarEndpoint extends Endpoint {
       orderDescending: orderByRegistration,
     );
 
-    print('Found # of cars: ${cars.length}');
-
     return cars;
+  }
+
+  Future<bool> deleteCar(Session session, Car car) async {
+    return await Car.deleteRow(session, car);
   }
 }

@@ -9,11 +9,20 @@ class CarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final carViewModel = context.watch(carViewModelProvider);
-    context.redux(carViewModelProvider).dispatchAsync(GetAllAction());
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Serverpod Cars Example'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.redux(carViewModelProvider).dispatchAsync(GetAllAction());
+            },
+            icon: const Icon(
+              Icons.refresh,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

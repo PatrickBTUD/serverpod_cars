@@ -37,6 +37,12 @@ class _EndpointCar extends _i1.EndpointRef {
         'getAll',
         {'orderByRegistration': orderByRegistration},
       );
+
+  _i2.Future<bool> deleteCar(_i3.Car car) => caller.callServerEndpoint<bool>(
+        'car',
+        'deleteCar',
+        {'car': car},
+      );
 }
 
 class Client extends _i1.ServerpodClient {

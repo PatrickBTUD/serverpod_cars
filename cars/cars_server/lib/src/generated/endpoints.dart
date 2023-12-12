@@ -79,6 +79,24 @@ class Endpoints extends _i1.EndpointDispatch {
             params['orderByRegistration'],
           ),
         ),
+        'deleteCar': _i1.MethodConnector(
+          name: 'deleteCar',
+          params: {
+            'car': _i1.ParameterDescription(
+              name: 'car',
+              type: _i1.getType<_i3.Car>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['car'] as _i2.CarEndpoint).deleteCar(
+            session,
+            params['car'],
+          ),
+        ),
       },
     );
   }
