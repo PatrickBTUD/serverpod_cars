@@ -18,12 +18,6 @@ class _EndpointCar extends _i1.EndpointRef {
   @override
   String get name => 'car';
 
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
-        'car',
-        'hello',
-        {'name': name},
-      );
-
   _i2.Future<String> addCar(_i3.Car car) => caller.callServerEndpoint<String>(
         'car',
         'addCar',
@@ -35,6 +29,13 @@ class _EndpointCar extends _i1.EndpointRef {
         'car',
         'getCarById',
         {'id': id},
+      );
+
+  _i2.Future<List<_i3.Car>?> getAll(bool orderByRegistration) =>
+      caller.callServerEndpoint<List<_i3.Car>?>(
+        'car',
+        'getAll',
+        {'orderByRegistration': orderByRegistration},
       );
 }
 

@@ -16,12 +16,8 @@ class CarEndpoint extends Endpoint {
   // should return a typed future; the same types as for the parameters are
   // supported. The `session` object provides access to the database, logging,
   // passwords, and information about the request being made to the server.
-  Future<String> hello(Session session, String name) async {
-    return 'Hello $name Session: ${session.startTime}';
-  }
 
   Future<String> addCar(Session session, Car car) async {
-    print(car.toString());
     Car.insert(session, car);
 
     return '201: Created';
@@ -31,5 +27,17 @@ class CarEndpoint extends Endpoint {
     var foundCar = await Car.findById(session, id);
 
     return foundCar;
+  }
+
+  Future<List<Car>?> getAll(Session session, bool orderByRegistration) async {
+    var cars = await Car.find(
+      session,
+      orderBy: Car.t.registrationDate,
+      orderDescending: orderByRegistration,
+    );
+
+    print('Found # of cars: ${cars.length}');
+
+    return cars;
   }
 }
