@@ -25,7 +25,7 @@ class OutroSlide extends FlutterDeckSlideWidget {
                 width: 1200,
                 height: 675,
                 child: Image.asset(
-                  'assets/images/flutter_forward.png',
+                  'assets/images/flutter_forward_outro.png',
                   fit: BoxFit.contain,
                 ),
               ),

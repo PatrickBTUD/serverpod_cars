@@ -82,7 +82,10 @@ class _MyAppState extends State<MyApp> {
           SerialisationProtocolIII(),
           Endpoint(),
           Database(),
+          DatabaseII(),
+          Logging(),
           OutroSlide(),
+          AdvancedTopics(),
         ],
       ),
     );
