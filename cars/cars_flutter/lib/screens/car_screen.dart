@@ -24,6 +24,14 @@ class CarScreen extends StatelessWidget {
               Icons.refresh,
             ),
           ),
+          IconButton(
+            onPressed: () {
+              context.redux(carViewModelProvider).dispatchAsync(AddCarAction());
+            },
+            icon: const Icon(
+              Icons.add,
+            ),
+          ),
         ],
       ),
       body: Padding(

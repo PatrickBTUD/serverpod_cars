@@ -29,6 +29,35 @@ class GetAllAction
   }
 }
 
+class AddCarAction
+    extends AsyncReduxAction<CarViewModel, AsyncValue<List<Car>>> {
+  @override
+  Future<AsyncValue<List<Car>>> reduce() async {
+    //todo: move this to front end input
+    final car = Car(
+      brand: 'BMW',
+      mileage: 10042,
+      model: '1.16i',
+      registrationDate: DateTime(2018, 7),
+      value: 10042,
+    );
+
+    final created = await notifier.serverpodClient.car.addCar(car);
+
+    if (created.contains('201')) {
+      final currentCars = state.data ?? [];
+
+      currentCars.add(car);
+
+      return AsyncValue.data(currentCars);
+    }
+    return AsyncValue.error(
+      'Could not add',
+      StackTrace.fromString('Could not add'),
+    );
+  }
+}
+
 class DeleteCarAction
     extends AsyncReduxAction<CarViewModel, AsyncValue<List<Car>>> {
   final Car car;
