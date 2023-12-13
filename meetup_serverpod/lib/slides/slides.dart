@@ -3,6 +3,7 @@ export 'advanced_topics.dart';
 export 'database.dart';
 export 'database_ii.dart';
 export 'endpoint.dart';
+export 'error_handling.dart';
 export 'how_to_start.dart';
 export 'intro_slide.dart';
 export 'logging.dart';

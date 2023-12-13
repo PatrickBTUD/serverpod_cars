@@ -84,6 +84,7 @@ class _MyAppState extends State<MyApp> {
           Database(),
           DatabaseII(),
           Logging(),
+          ErrorHandling(),
           OutroSlide(),
           AdvancedTopics(),
         ],

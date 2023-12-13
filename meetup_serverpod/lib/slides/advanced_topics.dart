@@ -38,7 +38,7 @@ class _Content extends StatelessWidget {
             style: Theme.of(context).textTheme.displayMedium,
           ),
           Text(
-            'Files, Streams,Deployment, Web Server',
+            'Files, Streams, Deployment, Web Server',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 42 * 5),
