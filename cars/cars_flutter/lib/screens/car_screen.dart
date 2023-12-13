@@ -12,11 +12,13 @@ class CarScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Serverpod Cars Example'),
+        title: const Text('Serverpod Cars'),
         actions: [
           IconButton(
             onPressed: () {
-              context.redux(carViewModelProvider).dispatchAsync(GetAllAction());
+              context
+                  .redux(carViewModelProvider)
+                  .dispatchAsync(GetAllAction(orderByRegistration: true));
             },
             icon: const Icon(
               Icons.refresh,
@@ -30,8 +32,25 @@ class CarScreen extends StatelessWidget {
           data: (carsData) {
             if (carsData.isNotEmpty) {
               return ListView(
-                children:
-                    carsData.map((data) => CarListItem(car: data)).toList(),
+                children: carsData
+                    .map(
+                      (car) => CarListItem(
+                        car: car,
+                        onDismissed: (_) {
+                          context
+                              .redux(carViewModelProvider)
+                              .dispatchAsync(DeleteCarAction(car: car));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Deleted: ${car.toString()}',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                    .toList(),
               );
             }
             return const Text('No cars available yet');

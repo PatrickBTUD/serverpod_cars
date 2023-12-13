@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class CarListItem extends StatelessWidget {
   final Car car;
-  const CarListItem({super.key, required this.car});
+  final void Function(DismissDirection) onDismissed;
+
+  const CarListItem({super.key, required this.car, required this.onDismissed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +17,7 @@ class CarListItem extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Dismissible(
           key: Key(car.id.toString()),
-          onDismissed: (_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Deleted: ${car.toString()}')));
-            //ref.read(carProvider).deleteCar(car: car);
-          },
+          onDismissed: onDismissed,
           background: Container(
             color: Colors.red,
             child: Text(

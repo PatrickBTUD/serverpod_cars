@@ -28,3 +28,26 @@ class GetAllAction
     return AsyncValue.data(cars ?? []);
   }
 }
+
+class DeleteCarAction
+    extends AsyncReduxAction<CarViewModel, AsyncValue<List<Car>>> {
+  final Car car;
+
+  DeleteCarAction({required this.car});
+
+  @override
+  Future<AsyncValue<List<Car>>> reduce() async {
+    final deleted = await notifier.serverpodClient.car.deleteCar(car);
+    if (deleted) {
+      final currentCars = state.data ?? [];
+
+      currentCars.remove(car);
+
+      return AsyncValue.data(currentCars);
+    }
+    return AsyncValue.error(
+      'Could not delete',
+      StackTrace.fromString('Could not delete'),
+    );
+  }
+}
